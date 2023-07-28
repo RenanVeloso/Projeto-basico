@@ -40,6 +40,37 @@ class RegistroController extends Controller
         $usuario = User::findOrFail($id);
         $usuario->delete();
 
-        return redirect()->route('mostrar-usuario')->with('success', 'Usuário excluído com sucesso!');
+        return redirect('/usuarios')->with('success', 'Usuário excluído com sucesso!');
+    }
+
+
+    public function editarUsuario($id)
+    {
+        $usuario = User::findOrFail($id);
+        return view('editar-usuario', compact('usuario'));
+    }
+
+
+
+
+    public function atualizarUsuario(Request $request, $id)
+    {
+        $usuario = User::findOrFail($id);
+
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
+            'senha' => 'sometimes|required|string|min:6|confirmed',
+        ]);
+
+        $usuario->name = $request->nome;
+        $usuario->email = $request->email;
+
+        if ($request->has('senha')) {
+            $usuario->password = bcrypt($request->senha);
+        }
+        $usuario->save();
+
+        return redirect('/usuarios')->with('success', 'Usuário editado com sucesso!');
     }
 }
