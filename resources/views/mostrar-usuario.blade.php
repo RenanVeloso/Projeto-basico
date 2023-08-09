@@ -15,7 +15,7 @@
     <h3>Lista de Usuários Cadastrados</h3>
 
     @if (session('success'))
-        <div class="alert alert-success">
+        <div id="alert-success" class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
@@ -40,6 +40,24 @@
         <button>Voltar</button>
     </a>
 
+
+    <script>
+        // Função para esconder o alerta após alguns segundos
+        function hideAlert() {
+            const alertElement = document.getElementById('alert-success');
+            if (alertElement) {
+                setTimeout(function () {
+                    alertElement.style.display = 'none';
+                }, 3000); // Tempo em milissegundos (neste caso, 5000ms = 5 segundos)
+            }
+        }
+    
+        // Chama a função para esconder o alerta assim que a página carregar
+        document.addEventListener('DOMContentLoaded', function () {
+            hideAlert();
+        });
+    </script>
+    
 
     <!-- Links de bootstrap e jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
