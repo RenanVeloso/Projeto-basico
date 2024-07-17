@@ -23,10 +23,12 @@
 
         <label for="senha">Senha:</label>
         <input type="password" name="senha" required><br>
+        @error('senha')
+        <div>{{ $message }}</div>
+        @enderror
 
         <label for="senha_confirmation">Confirme a Senha:</label>
         <input type="password" name="senha_confirmation" required><br>
-
         <button type="submit" class="login_button">Registrar</button>
 
     </form>
