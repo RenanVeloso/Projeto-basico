@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\RegistroController;
 
-Route::get('/registro', [RegistroController::class, 'exibirFormulario'])->name('exibirFormulario');
+Route::get('/', [RegistroController::class, 'exibirFormulario'])->name('exibirFormulario');
 
 Route::post('/registro', [RegistroController::class, 'registrar']);
 
