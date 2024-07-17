@@ -24,7 +24,7 @@
     </form>
     <br>
     <!-- Botão Voltar -->
-    <a href="{{ route('exibirFormulario') }}">
+    <a href="{{ route('mostrarUsuario') }}">
         <button>Voltar</button>
     </a>
 </body>
